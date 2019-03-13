@@ -7,11 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="seMethodGroup11" />
-        <module name="seMethodsGroup11v2" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="seMethodsGroup11v2" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>
