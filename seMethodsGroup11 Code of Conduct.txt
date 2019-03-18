@@ -1,8 +1,0 @@
-seMethodsGroup11 Code of Conduct
-
-1. All team members should be respected.
-2. All team members should contribute to the project. 
-3. If a team member wants to change something then they should consult the rest of the team first.
-4. If a team member cannot make it to a meeting or cannot do the work before the deadline they should give a long enough notice so the team can help or fix the problem.
-5. The team should have weekly meetings.
-6. The team should listen to each others ideas.
