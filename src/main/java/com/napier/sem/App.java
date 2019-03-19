@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App
 {
@@ -84,7 +85,7 @@ public class App
 
             /* Create string for SQL statement */
             String strSelect;
-            strSelect = "SELECT ID,Name,Population FROM city ORDER BY Population ASC";
+            strSelect = "SELECT ID,Name,Population FROM city ORDER BY Population DESC";
 
             // Execute SQL statement
             ResultSet resultSet = stmt.executeQuery(strSelect);
@@ -96,11 +97,13 @@ public class App
                 ct.name = resultSet.getString("Name");
                 ct.population = resultSet.getInt("Population");
 
-                System.out.println(
-                        "City ID: " + ct.ID + "\n" +
-                                "City Name: " + ct.name + "\n" +
-                                "Population: " + ct.population + "\n");
-
+                while(resultSet.next())
+                {
+                    System.out.println(
+                            "City ID: " + ct.ID + "\n" +
+                                    "City Name: " + ct.name + "\n" +
+                                    "Population: " + ct.population + "\n");
+                }
                 return ct;
             } else
                 return null;
@@ -114,6 +117,8 @@ public class App
             return null;
         }
     }
+
+
 }
 
 
