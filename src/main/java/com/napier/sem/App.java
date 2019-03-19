@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App
 {
@@ -84,28 +85,34 @@ public class App
 
             /* Create string for SQL statement */
             String strSelect;
-            strSelect = "SELECT ID,Name,Population FROM city ORDER BY Population ASC";
+            strSelect = "SELECT ID,Name,Population FROM city ORDER BY Population DESC";
 
             // Execute SQL statement
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
+            ResultSetMetaData resultSetMeta = resultSet.getMetaData();
+            System.out.println("LISTING...");
+            int colNum = resultSetMeta.getColumnCount();
+
             if (resultSet.next())
             {
                 City ct = new City();
-                ct.ID = resultSet.getInt("ID");
-                ct.name = resultSet.getString("Name");
-                ct.population = resultSet.getInt("Population");
+                ct.ID = resultSet.getInt("City.ID");
+                ct.name = resultSet.getString("City.Name");
+                ct.population = resultSet.getInt("City.Population");
 
-                System.out.println(
-                        "City ID: " + ct.ID + "\n" +
-                                "City Name: " + ct.name + "\n" +
-                                "Population: " + ct.population + "\n");
-
+                while(resultSet.next()) {
+                    for (int i = 1; i <= colNum; i++)
+                    {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = resultSet.getString(i);
+                        System.out.print(resultSetMeta.getColumnName(i) + " : " + columnValue);
+                    }
+                    System.out.println("");
+                }
                 return ct;
             } else
                 return null;
-
-
         }
         catch (Exception e)
         {
