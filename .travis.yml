@@ -1,21 +1,10 @@
-language: java
+sudo: required
 
-sudo: false
+      language: java
 
-addons:
-  hosts:
-    - db
+      services:
+        - docker
 
-services:
-  - docker
-
-install:
-  - docker build -t database db/.
-  - docker run --rm -d -e MYSQL_ROOT_PASSWORD=example -p 33060:3306 database
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
-before_script:
-  - mvn clean
-
-script:
-  - mvn test -Dtest=com.napier.sem.AppTest
+      after_success:
+        - docker build -t se_methods .
+        - docker run se_methods
