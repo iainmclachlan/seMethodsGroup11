@@ -27,9 +27,19 @@ public class mytest
         }
         else
         {
-            System.out.println("Value is NULL THIS IS BAD!");
+            System.out.println("Value is NULL");
         }
     }
+
+    @Test
+    void unitTest3()
+    {
+        assertEquals(5, 5, "Messages are equal");
+    }
+
+
+
+
 
 
 }

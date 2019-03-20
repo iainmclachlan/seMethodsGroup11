@@ -15,6 +15,8 @@ public class App
 
         a.getPopulation();
 
+        a.getCityPopulationByID(2806);
+
         //Disconnect from MySQL
         a.disconnect();
     }
@@ -110,6 +112,42 @@ public class App
                     }
                     System.out.println("");
                 }
+                return ct;
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City Population");
+            return null;
+        }
+    }
+
+
+    public City getCityPopulationByID(int ID)
+    {
+        System.out.println("Enter City ID\n");
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT Name,Population FROM city WHERE ID =" + ID;
+
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            System.out.println("LISTING...");
+
+            if (resultSet.next())
+            {
+                City ct = new City();
+                ct.ID = resultSet.getInt("City.ID");
+                ct.name = resultSet.getString("City.Name");
+                ct.population = resultSet.getInt("City.Population");
                 return ct;
             } else
                 return null;
