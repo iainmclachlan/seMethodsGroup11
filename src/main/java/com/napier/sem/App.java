@@ -164,9 +164,9 @@ public class App
         }
     }
 
-    public Country getCountryPopulationByID(String Code)
+    public Country getCountryPopulationByCode(String Code)
     {
-        System.out.println("Enter Country ID\n");
+        System.out.println("Enter Country Code\n");
         try
         {
             /* Create a SQL statement */
@@ -184,10 +184,10 @@ public class App
             if (resultSet.next())
             {
                 Country cty = new Country();
-                cty.country_code = resultSet.getString("country_code.ID");
+                cty.country_code = resultSet.getString("country_code.Code");
                 cty.country_name = resultSet.getString("country_name.Name");
                 cty.country_population = resultSet.getInt("country_population.Population");
-                System.out.println("Country ID : " + cty.country_code + " Name: " +cty.country_name + " Population: " + cty.country_population);
+                System.out.println("Country Code : " + cty.country_code + " Name: " +cty.country_name + " Population: " + cty.country_population);
                 return cty;
 
 
