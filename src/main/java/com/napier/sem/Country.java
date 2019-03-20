@@ -34,7 +34,7 @@ public class Country
 
     //Local Name of Country
     public String country_localName;
-    
+
     //Form of Goverment
     public String country_goverment;
 

@@ -25,4 +25,13 @@ public class AppIntegrationTest
         assertEquals(ct.name, "Kingston");
         assertEquals(ct.population, 800);
     }
+
+    @Test
+    void testGetCountryByCode()
+    {
+        Country ctr = app.getCountryPopulationByCode("AIA");
+        assertEquals(ctr.country_code,"AIA");
+        assertEquals(ctr.country_name,"Anguilla");
+        assertEquals(ctr.country_population,8000);
+    }
 }
