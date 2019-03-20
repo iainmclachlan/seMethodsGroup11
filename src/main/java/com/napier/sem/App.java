@@ -11,9 +11,11 @@ public class App
         App a = new App();
 
         //Connect to MySQL
-        a.connect();
+        a.connect("localhost:33060");
 
         a.getPopulation();
+
+        a.getCityPopulationByID(2806);
 
         //Disconnect from MySQL
         a.disconnect();
@@ -21,12 +23,12 @@ public class App
 
     private Connection con = null;
 
-    public void connect()
+    public void connect(String location)
     {
         try
         {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         }
         catch (ClassNotFoundException e)
         {
@@ -43,7 +45,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -118,6 +120,84 @@ public class App
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City Population");
+            return null;
+        }
+    }
+
+
+    public City getCityPopulationByID(int ID)
+    {
+        System.out.println("Enter City ID\n");;
+
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT ID,Name,Population FROM city WHERE ID =" + ID;
+
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            System.out.println("LISTING...");
+
+            if (resultSet.next())
+            {
+                City ct = new City();
+                ct.ID = resultSet.getInt("City.ID");
+                ct.name = resultSet.getString("City.Name");
+                ct.population = resultSet.getInt("City.Population");
+                System.out.println("City ID : " + ct.ID + " Name: " +ct.name + " Population: " + ct.population);
+                return ct;
+
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City Population");
+            return null;
+        }
+    }
+
+    public Country getCountryPopulationByCode(String Code)
+    {
+        System.out.println("Enter Country Code\n");
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT Code,Name,Population FROM country WHERE Code =" + Code;
+
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            System.out.println("LISTING...");
+
+            if (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.country_code = resultSet.getString("country_code.Code");
+                cty.country_name = resultSet.getString("country_name.Name");
+                cty.country_population = resultSet.getInt("country_population.Population");
+                System.out.println("Country Code : " + cty.country_code + " Name: " +cty.country_name + " Population: " + cty.country_population);
+                return cty;
+
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country Population");
             return null;
         }
     }
