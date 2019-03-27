@@ -1,14 +1,14 @@
 language: java
 
-env:
-  global:
-  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
-
 sudo: false
 
 addons:
   hosts:
     - db
+
+env:
+  global:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 services:
   - docker
