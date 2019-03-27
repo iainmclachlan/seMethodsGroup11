@@ -1,5 +1,9 @@
 language: java
 
+env:
+  global:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 sudo: false
 
 addons:
@@ -46,9 +50,25 @@ jobs:
         # Copy built JAR file.  JAR built in $TRAVIS_BUILD_DIR/
         file: $TRAVIS_BUILD_DIR/target/seMethodsGroup11.jar
         skip_cleanup: true
+  - stage: Google Cloud Deploy
+    install: skip
+    jdk: oraclejdk11
+    before_script:
+    # Check if Google Cloud SDK is installed.
+    - if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com | bash> /dev/null; fi
+    - source $HOME/google-cloud-sdk/path.bash.inc
+    # Install Kubernetes control to manage containers
+    - gcloud components install kubectl
+    - gcloud version
+    # Login to our Google Cloud Account using credentials file
+    - gcloud auth activate-service-account --key-file client-secret.json
 
 stages:
   - unit tests
   - integration tests
   - name: GitHub Release
     if: branch = master
+  - name: Google Cloud Deploy
+  if: branch = master
+
+
