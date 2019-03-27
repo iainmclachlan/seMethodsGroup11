@@ -69,7 +69,7 @@ jobs:
     - gcloud config set compute/zone europe-west2-b
     # Assign project ID to a variable to make life easier
     - export PROJECT_ID="$(gcloud config get-value project -q)"
-    # Authenticate against Google's Docker image manager.
+    # Authenticate against Google's Docker image manager..
     - gcloud auth configure-docker
     # Build the database image.
     - docker build -t gcr.io/$semethodsgroup11/db db/.
