@@ -62,6 +62,25 @@ jobs:
     - gcloud version
     # Login to our Google Cloud Account using credentials file
     - gcloud auth activate-service-account --key-file client-secret.json
+    script:
+    # Set the project we will work in.
+    - gcloud config set project semethodsgroup11
+    # Set the zone to work in.
+    - gcloud config set compute/zone europe-west2-b
+    # Assign project ID to a variable to make life easier
+    - export PROJECT_ID="$(gcloud config get-value project -q)"
+    # Authenticate against Google's Docker image manager.
+    - gcloud auth configure-docker
+    # Build the database image.
+    - docker build -t gcr.io/$semethodsgroup11/db db/.
+    # Push the database image.
+    - docker push gcr.io/$semethodsgroup11/db
+    # Create a container cluster.  We only need one node.
+    - gcloud container clusters create hr-cluster --num-nodes=1
+    # Tell kubernetes to run the built database image, opening port 3306
+    - kubectl run hr --image=gcr.io/$semethodsgroup11/db --port 3306
+    # Expose the cluster to the Internet, mapping external port 3306 to internal port 3306.
+    - kubectl expose deployment hr --port=3306 --target-port=3306 --type=LoadBalancer
 
 stages:
   - unit tests
