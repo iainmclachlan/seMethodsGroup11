@@ -127,7 +127,7 @@ public class App
 
     public City getCityPopulationByID(int ID)
     {
-        System.out.println("Enter City ID\n");;
+        System.out.println("Enter City ID\n");
 
         try
         {
@@ -190,6 +190,41 @@ public class App
                 System.out.println("Country Code : " + cty.country_code + " Name: " +cty.country_name + " Population: " + cty.country_population);
                 return cty;
 
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country Population");
+            return null;
+        }
+    }
+    public Country getWorldPopulation()
+    {
+        System.out.println("Population of the world.\n");
+
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT SUM(Population) FROM country";
+
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            System.out.println("LISTING...");
+
+            if (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.country_population = resultSet.getInt("Country.Population");
+                System.out.println("World Population: " + cty.country_population);
+                return cty;
 
             } else
                 return null;
