@@ -17,7 +17,7 @@ public class Country
     //Surface Area
     public double country_surfaceArea;
 
-    //Year of Independace
+    //Year of Independence
     public int country_indyYear;
 
     //Population

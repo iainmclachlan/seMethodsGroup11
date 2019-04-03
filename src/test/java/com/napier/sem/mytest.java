@@ -19,9 +19,9 @@ public class mytest
     }
 
     @Test
-    void getPopulationTestNull()
+    void getCityPopulationTestNull()
     {
-        if(app.getPopulation() != null)
+        if(app.getCityPopulationDESC() != null)
         {
             System.out.println("Value is not NULL");
         }
@@ -37,9 +37,17 @@ public class mytest
         assertEquals(5, 5, "Messages are equal");
     }
 
-
-
-
-
+    @Test
+    void getWorldPopulationTestNull()
+    {
+        if(app.getWorldPopulation() != null)
+        {
+            System.out.println("Value is not NULL");
+        }
+        else
+        {
+            System.out.println("Value is NULL");
+        }
+    }
 
 }

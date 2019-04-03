@@ -3,11 +3,11 @@ package com.napier.sem;
 
 public class City
 {
-    //Unique Country ID
+    //Unique City ID
     public  int ID;
 
-    //Name of Country
-    public String name;
+    //Name of City
+    public String city_name;
 
     //Country Code
     public  String country_code;
@@ -16,5 +16,5 @@ public class City
     public  String district;
 
     //Population
-    public  int population;
+    public  int city_population;
 }

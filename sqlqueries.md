@@ -31,7 +31,7 @@
 
 -The top N populated countries in a region where N is provided by the user.
 
--All the cities in the world organised by largest population to smallest.
+-All the cities in the world organised by largest population to smallest. -DONE-
 
     strSelect = "SELECT ID,Name,Population FROM City ORDER BY Population DESC";
 
@@ -84,7 +84,7 @@
 -The population of people, people living in cities, and people not living in cities in each country.
 
 The Program will also be able to display the following Information:
--The population of the world.
+-The population of the world. -DONE-
 
     strSelect = "SELECT Population FROM World;
 

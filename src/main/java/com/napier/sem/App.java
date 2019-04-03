@@ -13,9 +13,15 @@ public class App
         //Connect to MySQL
         a.connect("localhost:33060");
 
-        a.getCityPopulation();
+        a.getCityPopulationDESC();
 
         a.getCityPopulationByID(2806);
+
+        a.getCountryPopulationByCode("AIA");
+
+        a.getWorldPopulation();
+
+        a.getCityPopulation();
 
         //Disconnect from MySQL
         a.disconnect();
@@ -77,7 +83,7 @@ public class App
         }
     }
 
-    public City getCityPopulation()
+    public City getCityPopulationDESC()
     {
         System.out.println("All the cities in the world organised by largest population to smallest.\n");
         try
@@ -100,8 +106,8 @@ public class App
             {
                 City ct = new City();
                 ct.ID = resultSet.getInt("City.ID");
-                ct.name = resultSet.getString("City.Name");
-                ct.population = resultSet.getInt("City.Population");
+                ct.city_name = resultSet.getString("City.Name");
+                ct.city_population = resultSet.getInt("City.Population");
 
                 while(resultSet.next()) {
                     for (int i = 1; i <= colNum; i++)
@@ -147,9 +153,9 @@ public class App
             {
                 City ct = new City();
                 ct.ID = resultSet.getInt("City.ID");
-                ct.name = resultSet.getString("City.Name");
-                ct.population = resultSet.getInt("City.Population");
-                System.out.println("City ID : " + ct.ID + " Name: " +ct.name + " Population: " + ct.population);
+                ct.city_name = resultSet.getString("City.Name");
+                ct.city_population = resultSet.getInt("City.Population");
+                System.out.println("City ID : " + ct.ID + " Name: " +ct.city_name + " Population: " + ct.city_population);
                 return ct;
 
 
@@ -201,6 +207,7 @@ public class App
             return null;
         }
     }
+
     public Country getWorldPopulation()
     {
         System.out.println("Population of the world.\n");
@@ -233,6 +240,42 @@ public class App
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Country Population");
+            return null;
+        }
+    }
+
+    public City getCityPopulation()
+    {
+        System.out.println("Population of the Cities.\n");
+
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT SUM(Population) FROM city";
+
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            System.out.println("LISTING...");
+
+            if (resultSet.next())
+            {
+                City ct = new City();
+                ct.city_population = resultSet.getInt("City.Population");
+                System.out.println("Cities Population: " + ct.city_population);
+                return ct;
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Cities Population");
             return null;
         }
     }
