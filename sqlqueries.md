@@ -27,6 +27,13 @@
 
 -The top N populated countries in the world where N is provided by the user.
 
+    strSelect = "SELECT ID, Name, Population FROM Country ORDER BY Population DESC" 
+    
+    Country cnt = new Country();
+                      cnt.ID = resultSet.getInt("Country.ID");
+                      cnt.name = resultSet.getString("Country.Name");
+                      cnt.population = resultSet.getInt("Country.Population");
+
 -The top N populated countries in the world where N is provided by the user.
 
 -The top N populated countries in a region where N is provided by the user.
