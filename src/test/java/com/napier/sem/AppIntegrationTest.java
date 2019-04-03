@@ -27,13 +27,15 @@ public class AppIntegrationTest
     }
 
 
+    /*
     @Test
     void testGetCountryByCode()
     {
         String countryCode = "AIA";
         Country ctr = app.getCountryPopulationByCode(countryCode);
+        assertEquals(ctr.country_code,"AIA");
         assertEquals(ctr.country_name,"Anguilla");
         assertEquals(ctr.country_population,8000);
     }
-
+    */
 }
