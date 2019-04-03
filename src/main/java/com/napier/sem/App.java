@@ -13,7 +13,7 @@ public class App
         //Connect to MySQL
         a.connect("localhost:33060");
 
-        a.getPopulation();
+        a.getCityPopulation();
 
         a.getCityPopulationByID(2806);
 
@@ -77,7 +77,7 @@ public class App
         }
     }
 
-    public City getPopulation()
+    public City getCityPopulation()
     {
         System.out.println("All the cities in the world organised by largest population to smallest.\n");
         try
