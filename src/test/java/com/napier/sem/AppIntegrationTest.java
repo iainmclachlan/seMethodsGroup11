@@ -32,7 +32,6 @@ public class AppIntegrationTest
     {
         String countryCode = "AIA";
         Country ctr = app.getCountryPopulationByCode(countryCode);
-        assertEquals(ctr.country_code,countryCode);
         assertEquals(ctr.country_name,"Anguilla");
         assertEquals(ctr.country_population,8000);
     }
