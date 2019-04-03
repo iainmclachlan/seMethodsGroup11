@@ -43,8 +43,7 @@ jobs:
     install: skip
     jdk: oraclejdk11
     before_script:
-    - if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com
-      | bash > /dev/null; fi
+    - if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com| bash > /dev/null; fi
     - source $HOME/google-cloud-sdk/path.bash.inc
     - gcloud components install kubectl
     - gcloud version
@@ -54,10 +53,10 @@ jobs:
     - gcloud config set compute/zone europe-west2-b
     - export PROJECT_ID="$(gcloud config get-value project -q)"
     - gcloud auth configure-docker
-    - docker build -t gcr.io/$semethodsgroup11/db db/.
-    - docker push gcr.io/$semethodsgroup11/db
+    - docker build -t gcr.io/${PROJECT_ID}/db db/.
+    - docker push gcr.io/${PROJECT_ID}/db
     - gcloud container clusters create hr-cluster --num-nodes=1
-    - kubectl run hr --image=gcr.io/$semethodsgroup11/db --port 3306
+    - kubectl run hr --image=gcr.io/${PROJECT_ID}/db --port 3306
     - kubectl expose deployment hr --port=3306 --target-port=3306 --type=LoadBalancer
 stages:
 - unit tests
