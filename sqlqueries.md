@@ -57,7 +57,8 @@
                     ctnt.population = resultSet.getInt("Continent.Population");
 
 -All the cities in a region organised by largest population to smallest.
-
+    
+    
 -All the cities in a country organised by largest population to smallest.
 
 -All the cities in a district organised by largest population to smallest.
@@ -93,42 +94,42 @@
 The Program will also be able to display the following Information:
 -The population of the world.
 
-    strSelect = "SELECT Population FROM World;
+    strSelect = "SELECT SUM(Population) FROM country;
 
     World wd = new World();
                     wd.population = resultSet.getInt("Continent.Population");
 
 -The population of a continent.
 
-    strSelect = "SELECT Population FROM Continent;
+    strSelect = "SELECT SUM(Population) FROM country WHERE continent = "continent name by the user";
 
     Continent ctnt = new Continent();
                     ctnt.population = resultSet.getInt("Continent.Population");
 
 -The population of a region.
 
-    strSelect = "SELECT Population FROM Region;
+    strSelect = "SELECT SUM(Population) FROM country WHERE region = "region name by the user" ;
 
     Region rgn = new Region();
                     rgn.population = resultSet.getInt("Region.Population");
 
 -The population of a country.
 
-    strSelect = "SELECT Population FROM Country;
+    strSelect = "SELECT Population FROM country WHERE country = "country name by the user";
 
     Country cry = new Country();
                     cry.population = resultSet.getInt("Country.Population");
 
 -The population of a district.
 
-    strSelect = "SELECT Population FROM District;
+    strSelect = "SELECT SUM(Population) FROM city WHERE District = "district name by the user";
 
     District dtct = new District();
                     dtct.population = resultSet.getInt("District.Population");
 
 -The population of a city.
 
-    strSelect = "SELECT Population FROM City;
+    strSelect = "SELECT Population FROM city WHERE Name = "name provided by the user";
 
         City ct = new City();
                         ct.population = resultSet.getInt("City.Population");
