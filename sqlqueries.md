@@ -1,15 +1,15 @@
 -All the countries in the world organised by largest population to smallest.
 
-    strSelect = "SELECT ID,Name,Population FROM World ORDER BY Population DESC";
+    strSelect = "SELECT Code, Name, Population FROM country ORDER BY Paopulation DESC";
 
     World wd = new World();
-                    wd.ID = resultSet.getInt("World.ID");
-                    wd.name = resultSet.getString("World.Name");
-                    wd.population = resultSet.getInt("World.Population");
+                    wd.code = resultSet.getInt("country.Code");
+                    wd.name = resultSet.getString("country.Name");
+                    wd.population = resultSet.getInt("country.Population");
 
 -All the countries in a continent organised by largest population to smallest.
 
-    strSelect = "SELECT ID,Name,Population FROM Continent ORDER BY Population DESC";
+    strSelect = "SELECT Code, Name, Population, Continent FROM country GROUP BY Continent ORDER BY Population DESC";
 
     Continent ctnt = new Continent();
                     ctnt.ID = resultSet.getInt("Continent.ID");
@@ -18,7 +18,7 @@
 
 -All the countries in a region organised by largest population to smallest.
 
-    strSelect = "SELECT ID,Name,Population FROM Region ORDER BY Population DESC";
+    strSelect = "SELECT Code, Name, Population, Region FROM country GROUP BY Region ORDER BY Population DESC";
 
     Region rgn = new Region();
                     rgn.ID = resultSet.getInt("Region.ID");
@@ -27,7 +27,7 @@
 
 -The top N populated countries in the world where N is provided by the user.
 
-    strSelect = "SELECT ID, Name, Population FROM Country ORDER BY Population DESC" 
+    strSelect = "SELECT Code, Name, Population FROM country ORDER BY Population HAVING COUNT(Code) = n";
     
     Country cnt = new Country();
                       cnt.ID = resultSet.getInt("Country.ID");
