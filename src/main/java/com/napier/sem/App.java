@@ -24,6 +24,8 @@ public class App
 
         a.getCityPopulation();
 
+        a.getPopulationContinent();
+
         //Disconnect from MySQL
         a.disconnect();
     }
@@ -134,6 +136,7 @@ public class App
 
     public City getCityPopulationByID(int ID)
     {
+        System.out.println("Get City Population by ID\n");
         System.out.println("Enter City ID\n");
 
         try
@@ -173,6 +176,7 @@ public class App
 
     public Country getCountryPopulationByCode(String Code)
     {
+        System.out.println("Get country population by code ID\n");
         System.out.println("Enter Country Code\n");
         try
         {
@@ -291,7 +295,7 @@ public class App
 
             /* Create string for SQL statement */
             String strSelect;
-            strSelect = "SELECT country_code ,Name,country_population FROM country ORDER BY Population DESC";
+            strSelect = "SELECT Name, Code, Population FROM country ORDER BY Population DESC";
 
             // Execute SQL statement
             ResultSet resultSet = stmt.executeQuery(strSelect);
@@ -324,6 +328,42 @@ public class App
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Country Population");
+            return null;
+        }
+    }
+
+    public Country getPopulationContinent()
+    {
+        System.out.println("Get population continent\n");
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT SUM(Population),Continent FROM country ORDER BY continent";
+
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            System.out.println("LISTING...");
+
+            if (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.country_continent = resultSet.getString("country_continent.Continent");
+                cty.country_population = resultSet.getInt("country_population.Population");
+                System.out.println(" Name: " +cty.country_continent + " Population: " + cty.country_population);
+                return cty;
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Continents Population");
             return null;
         }
     }

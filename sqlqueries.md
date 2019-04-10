@@ -1,4 +1,4 @@
--All the countries in the world organised by largest population to smallest.
+-All the countries in the world organised by largest population to smallest. -DONE-
 
     strSelect = "SELECT Code, Name, Population FROM country ORDER BY Paopulation DESC";
 
@@ -49,7 +49,7 @@
 
 -All the cities in a continent organised by largest population to smallest.
 
-    strSelect = "SELECT ID,Name,Population FROM Continent WHERE "add something tomorrow" ORDER BY Population DESC";
+    strSelect = "SELECT ID,Name,Population FROM world WHERE "add something tomorrow" ORDER BY Population DESC";
 
     Continent ctnt = new Continent();
                     ctnt.ID = resultSet.getInt("Continent.ID");
@@ -99,7 +99,7 @@ The Program will also be able to display the following Information:
     World wd = new World();
                     wd.population = resultSet.getInt("Continent.Population");
 
--The population of a continent.
+-The population of a continent. _DONE-
 
     strSelect = "SELECT SUM(Population) FROM country WHERE continent = "continent name by the user";
 
@@ -127,7 +127,7 @@ The Program will also be able to display the following Information:
     District dtct = new District();
                     dtct.population = resultSet.getInt("District.Population");
 
--The population of a city.
+-The population of a city. -DONE-
 
     strSelect = "SELECT Population FROM city WHERE Name = "name provided by the user";
 
