@@ -85,7 +85,9 @@ public class App
             }
         }
     }
-
+    /*
+    Shows city population in a descending order
+     */
     public City getCityPopulationDESC()
     {
         System.out.println("All the cities in the world organised by largest population to smallest.\n");
@@ -133,7 +135,9 @@ public class App
         }
     }
 
-
+/*
+shows city population from a specific ID
+ */
     public City getCityPopulationByID(int ID)
     {
         System.out.println("Get City Population by ID\n");
@@ -173,6 +177,9 @@ public class App
             return null;
         }
     }
+    /*
+    shows a country population by a specific code
+     */
 
     public Country getCountryPopulationByCode(String Code)
     {
@@ -212,6 +219,9 @@ public class App
             return null;
         }
     }
+    /*
+    shows world population
+     */
 
     public Country getWorldPopulation()
     {
@@ -249,6 +259,9 @@ public class App
         }
     }
 
+    /*
+    shows city population
+     */
     public City getCityPopulation()
     {
         System.out.println("Population of the Cities.\n");
@@ -285,6 +298,9 @@ public class App
         }
     }
 
+    /*
+    shows all the countries in the world organised by largest population to smallest
+     */
     public Country getPopulationDESC()
     {
         System.out.println("All the countries in the world organised by largest population to smallest.\n");
@@ -332,6 +348,9 @@ public class App
         }
     }
 
+    /*
+    shows population of a continent
+     */
     public Country getPopulationContinent()
     {
         System.out.println("Get population continent\n");
