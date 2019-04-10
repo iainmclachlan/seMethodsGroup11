@@ -22,8 +22,8 @@ public class AppIntegrationTest
     {
         City ct = app.getCityPopulationByID(2806);
         assertEquals(ct.ID, 2806);
-        assertEquals(ct.name, "Kingston");
-        assertEquals(ct.population, 800);
+        assertEquals(ct.city_name, "Kingston");
+        assertEquals(ct.city_population, 800);
     }
 
 
