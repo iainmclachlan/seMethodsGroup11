@@ -13,6 +13,7 @@ public class App
         //Connect to MySQL
         a.connect("localhost:33060");
 
+        a.getPopulationDESC();
         a.getCityPopulationDESC();
 
         a.getCityPopulationByID(2806);
@@ -276,6 +277,53 @@ public class App
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Cities Population");
+            return null;
+        }
+    }
+
+    public Country getPopulationDESC()
+    {
+        System.out.println("All the countries in the world organised by largest population to smallest.\n");
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT country_code ,Name,country_population FROM country ORDER BY Population DESC";
+
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ResultSetMetaData resultSetMeta = resultSet.getMetaData();
+            System.out.println("LISTING...");
+            int colNum = resultSetMeta.getColumnCount();
+
+            if (resultSet.next())
+            {
+                Country ctr = new Country();
+                ctr.country_code = resultSet.getString("Country.Code");
+                ctr.country_name = resultSet.getString("Country.Name");
+                ctr.country_population = resultSet.getInt("Country.Population");
+
+                while(resultSet.next()) {
+                    for (int i = 1; i <= colNum; i++)
+                    {
+                        if (i > 1) System.out.print(", ");
+                        String columnValue = resultSet.getString(i);
+                        System.out.print(resultSetMeta.getColumnName(i) + " : " + columnValue);
+                    }
+                    System.out.println("");
+                }
+                return ctr;
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country Population");
             return null;
         }
     }
