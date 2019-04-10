@@ -11,7 +11,7 @@ public class App
         App a = new App();
 
         //Connect to MySQL
-        a.connect("localhost:33060");
+        a.connect("35.234.135.51:3306");
 
         a.getPopulationDESC();
         a.getCityPopulationDESC();
@@ -30,6 +30,10 @@ public class App
         a.disconnect();
     }
 
+    /**
+     * Connects to External or Local SQL Database
+     *
+     */
     private Connection con = null;
 
     public void connect(String location)
