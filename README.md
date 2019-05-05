@@ -9,13 +9,13 @@
 
 | ID | Name | Met | Screenshot |
 | --- | --- | --- | --- |
-| 1 | All the countries in the world organised by largest population to smallest. | No |  |
+| 1 | All the countries in the world organised by largest population to smallest. | YES |  |
 | 2 | All the countries in a continent organised by largest population to smallest. | No |  |
 | 3 | All the countries in a region organised by largest population to smallest. | No |  |
 | 4 | The top N populated countries in the world where N is provided by the user. | No |  |
 | 5 | The top N populated countries in a continent where N is provided by the user. | No |  |
 | 6 | The top N populated countries in a region where N is provided by the user. | No |  |
-| 7 | All the cities in the world organised by largest population to smallest. | No |  |
+| 7 | All the cities in the world organised by largest population to smallest. | YES |  |
 | 8 | All the cities in a continent organised by largest population to smallest. | No |  |
 | 9 | All the cities in a region organised by largest population to smallest. | No |  |
 | 10 | All the cities in a country organised by largest population to smallest. | No |  |
@@ -34,7 +34,7 @@
 | 23 | The population of people, people living in cities, and people not living in cities in each continent. | No |  |
 | 24 | The population of people, people living in cities, and people not living in cities in each region. | No  |  |
 | 25 | The population of people, people living in cities, and people not living in cities in each country. | No |  |
-| 26 | The population of the world. | No  |  |
+| 26 | The population of the world. | YES  |  |
 | 27 | The population of a continent. | No |  |
 | 28 | The population of a region. | No |  |
 | 29 | The population of a country. | No |  |
