@@ -6,6 +6,7 @@
 - Release [![Releases](https://img.shields.io/github/release/iainmclachlan/seMethodsGroup11.svg?style=flat-square)](https://github.com/iainmclachlan/seMethodsGroup11/releases)
 
 
+5 requirements of 32 have been implemented, which is %
 
 | ID | Name | Met | Screenshot |
 | --- | --- | --- | --- |
@@ -35,11 +36,11 @@
 | 24 | The population of people, people living in cities, and people not living in cities in each region. | No  |  |
 | 25 | The population of people, people living in cities, and people not living in cities in each country. | No |  |
 | 26 | The population of the world. | YES  |  |
-| 27 | The population of a continent. | No |  |
-| 28 | The population of a region. | No |  |
+| 27 | The population of a continent. | YES |  |
+| 28 | The population of a region. | Yes |  |
 | 29 | The population of a country. | No |  |
 | 30 | The population of a district. | No |  |
-| 31 | The population of a city. | No | |
+| 31 | The population of a city. | YES | |
 
 
 |      | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable | Average |

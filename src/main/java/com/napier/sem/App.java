@@ -27,7 +27,9 @@ public class App
 
         a.getPopulationContinent();
 
-        a.getRegionContinent();
+        a.getRegionPopulation();
+
+        a.getDistrictPopulation();
 
         //Disconnect from MySQL
         a.disconnect();
@@ -329,10 +331,10 @@ shows city population from a specific ID
 
             if (resultSet.next())
             {
-                Country ctr = new Country();
-                ctr.country_code = resultSet.getString("Country.Code");
-                ctr.country_name = resultSet.getString("Country.Name");
-                ctr.country_population = resultSet.getInt("Country.Population");
+                Country cty = new Country();
+                cty.country_code = resultSet.getString("Country.Code");
+                cty.country_name = resultSet.getString("Country.Name");
+                cty.country_population = resultSet.getInt("Country.Population");
 
                 while(resultSet.next()) {
                     for (int i = 1; i <= colNum; i++)
@@ -343,7 +345,7 @@ shows city population from a specific ID
                     }
                     System.out.println("");
                 }
-                return ctr;
+                return cty;
             } else
                 return null;
         }
@@ -397,7 +399,7 @@ shows city population from a specific ID
     /*
    shows population of a region
     */
-    public Country getRegionContinent()
+    public Country getRegionPopulation()
     {
         System.out.println("Get region population\n");
         try
@@ -411,7 +413,10 @@ shows city population from a specific ID
             // Execute SQL statement
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
+            ResultSetMetaData resultSetMeta = resultSet.getMetaData();
+
             System.out.println("LISTING...");
+            int colNum = resultSetMeta.getColumnCount();
 
             if (resultSet.next())
             {
@@ -419,6 +424,16 @@ shows city population from a specific ID
                 cty.country_region = resultSet.getString("country_region.Region");
                 cty.country_population = resultSet.getInt("country_population.Population");
                 System.out.println(" Name: " +cty.country_region + " Population: " + cty.country_population);
+
+                while(resultSet.next()) {
+                    for (int i = 1; i <= colNum; i++)
+                    {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = resultSet.getString(i);
+                        System.out.print(resultSetMeta.getColumnName(i) + " : " + columnValue);
+                    }
+                    System.out.println("");
+                }
                 return cty;
 
             } else
@@ -427,7 +442,59 @@ shows city population from a specific ID
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get Continents Population");
+            System.out.println("Failed to get Regions Population");
+            return null;
+        }
+    }
+
+    /*
+   shows population of a district
+    */
+    public City getDistrictPopulation()
+    {
+        System.out.println("Get district population\n");
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT SUM(Population),District FROM city SORT BY District";
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ResultSetMetaData resultSetMeta = resultSet.getMetaData();
+
+            System.out.println("LISTING...");
+            int colNum = resultSetMeta.getColumnCount();
+
+
+            if (resultSet.next())
+            {
+                City ct = new City();
+                ct.city_district = resultSet.getString("country_district.District");
+                ct.city_population = resultSet.getInt("city_population.Population");
+                System.out.println(" Name: " +ct.city_district + " Population: " + ct.city_population);
+
+                while(resultSet.next()) {
+                    for (int i = 1; i <= colNum; i++)
+                    {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = resultSet.getString(i);
+                        System.out.print(resultSetMeta.getColumnName(i) + " : " + columnValue);
+                    }
+                    System.out.println("");
+                }
+                return ct;
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get District Population");
             return null;
         }
     }

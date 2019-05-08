@@ -10,10 +10,10 @@ public class City
     public String city_name;
 
     //Country Code
-    public  String country_code;
+    public  char city_CountryCode;
 
     //District
-    public  String district;
+    public  String city_district;
 
     //Population
     public  int city_population;
