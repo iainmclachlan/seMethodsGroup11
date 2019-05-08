@@ -31,6 +31,8 @@ public class App
 
         a.getDistrictPopulation();
 
+        a.getContinentPopulationDESC();
+
         //Disconnect from MySQL
         a.disconnect();
     }
@@ -498,6 +500,60 @@ shows city population from a specific ID
             return null;
         }
     }
+
+    /*
+  All the countries in a continent organised by largest population to smallest.
+   */
+    public Country getContinentPopulationDESC()
+    {
+        System.out.println("All the countries in a continent organised by largest population to smallest.\n");
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT Code, Name, Population, Continent FROM country GROUP BY Continent ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ResultSetMetaData resultSetMeta = resultSet.getMetaData();
+
+            System.out.println("LISTING...");
+            int colNum = resultSetMeta.getColumnCount();
+
+            if (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.country_code = resultSet.getString("country_code.Code");
+                cty.country_name = resultSet.getString("country_name.Name");
+                cty.country_population = resultSet.getInt("country_population.Population");
+                cty.country_continent = resultSet.getString("country_continent.Continent");
+                System.out.println(" Code: " +cty.country_code + " Name: " +cty.country_name + " Population: " + cty.country_population + " Continent: " +cty.country_continent);
+
+                while(resultSet.next()) {
+                    for (int i = 1; i <= colNum; i++)
+                    {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = resultSet.getString(i);
+                        System.out.print(resultSetMeta.getColumnName(i) + " : " + columnValue);
+                    }
+                    System.out.println("");
+                }
+                return cty;
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get all the countries in a continent organised by largest population to smallest.");
+            return null;
+        }
+    }
+
 }
 
 
