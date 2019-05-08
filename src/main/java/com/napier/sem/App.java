@@ -14,6 +14,7 @@ public class App
         a.connect("35.234.135.51:3306");
 
         a.getPopulationDESC();
+
         a.getCityPopulationDESC();
 
         a.getCityPopulationByID(2806);
@@ -25,6 +26,8 @@ public class App
         a.getCityPopulation();
 
         a.getPopulationContinent();
+
+        a.getRegionContinent();
 
         //Disconnect from MySQL
         a.disconnect();
@@ -378,6 +381,44 @@ shows city population from a specific ID
                 cty.country_continent = resultSet.getString("country_continent.Continent");
                 cty.country_population = resultSet.getInt("country_population.Population");
                 System.out.println(" Name: " +cty.country_continent + " Population: " + cty.country_population);
+                return cty;
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Continents Population");
+            return null;
+        }
+    }
+
+    /*
+   shows population of a region
+    */
+    public Country getRegionContinent()
+    {
+        System.out.println("Get region population\n");
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT SUM(Population),Region FROM country SORT BY Region";
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            System.out.println("LISTING...");
+
+            if (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.country_region = resultSet.getString("country_region.Region");
+                cty.country_population = resultSet.getInt("country_population.Population");
+                System.out.println(" Name: " +cty.country_region + " Population: " + cty.country_population);
                 return cty;
 
             } else
