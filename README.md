@@ -6,7 +6,7 @@
 - Release [![Releases](https://img.shields.io/github/release/iainmclachlan/seMethodsGroup11.svg?style=flat-square)](https://github.com/iainmclachlan/seMethodsGroup11/releases)
 
 
-8 requirements of 32 have been implemented, which is 25%
+9 requirements of 32 have been implemented, which is 28.125%
 
 | ID | Name | Met | Screenshot |
 | --- | --- | --- | --- |
@@ -38,7 +38,7 @@
 | 26 | The population of the world. | YES  |  |
 | 27 | The population of a continent. | YES |  |
 | 28 | The population of a region. | YES |  |
-| 29 | The population of a country. | No |  |
+| 29 | The population of a country. | YES |  |
 | 30 | The population of a district. | YES |  |
 | 31 | The population of a city. | YES | |
 

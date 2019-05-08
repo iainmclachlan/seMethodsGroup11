@@ -31,6 +31,8 @@ public class App
 
         a.getDistrictPopulation();
 
+        a.getCountryPopulation();
+
         a.getContinentPopulationDESC();
 
         //Disconnect from MySQL
@@ -377,7 +379,10 @@ shows city population from a specific ID
             // Execute SQL statement
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
+            ResultSetMetaData resultSetMeta = resultSet.getMetaData();
+
             System.out.println("LISTING...");
+            int colNum = resultSetMeta.getColumnCount();
 
             if (resultSet.next())
             {
@@ -385,6 +390,16 @@ shows city population from a specific ID
                 cty.country_continent = resultSet.getString("country_continent.Continent");
                 cty.country_population = resultSet.getInt("country_population.Population");
                 System.out.println(" Name: " +cty.country_continent + " Population: " + cty.country_population);
+
+                while(resultSet.next()) {
+                    for (int i = 1; i <= colNum; i++)
+                    {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = resultSet.getString(i);
+                        System.out.print(resultSetMeta.getColumnName(i) + " : " + columnValue);
+                    }
+                    System.out.println("");
+                }
                 return cty;
 
             } else
@@ -497,6 +512,57 @@ shows city population from a specific ID
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get District Population");
+            return null;
+        }
+    }
+
+    /*
+   shows population of a country
+    */
+    public Country getCountryPopulation()
+    {
+        System.out.println("Get population of a country\n");
+        try
+        {
+            /* Create a SQL statement */
+            Statement stmt = con.createStatement();
+
+            /* Create string for SQL statement */
+            String strSelect;
+            strSelect = "SELECT SUM(Population),name FROM country SORT BY name";
+            // Execute SQL statement
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ResultSetMetaData resultSetMeta = resultSet.getMetaData();
+
+            System.out.println("LISTING...");
+            int colNum = resultSetMeta.getColumnCount();
+
+            if (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.country_name = resultSet.getString("country_name.Name");
+                cty.country_population = resultSet.getInt("country_population.Population");
+                System.out.println(" Name: " +cty.country_name + " Population: " + cty.country_population);
+
+                while(resultSet.next()) {
+                    for (int i = 1; i <= colNum; i++)
+                    {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = resultSet.getString(i);
+                        System.out.print(resultSetMeta.getColumnName(i) + " : " + columnValue);
+                    }
+                    System.out.println("");
+                }
+                return cty;
+
+            } else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country populations");
             return null;
         }
     }
