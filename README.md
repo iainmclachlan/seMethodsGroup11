@@ -36,11 +36,11 @@
 | 24 | The population of people, people living in cities, and people not living in cities in each region. | No  |  |
 | 25 | The population of people, people living in cities, and people not living in cities in each country. | No |  |
 | 26 | The population of the world. | YES  |  |
-| 27 | The population of a continent. | YES |  |
-| 28 | The population of a region. | YES |  |
-| 29 | The population of a country. | YES |  |
-| 30 | The population of a district. | YES |  |
-| 31 | The population of a city. | YES | |
+| 27 | The population of a continent. | No |  |
+| 28 | The population of a region. | No |  |
+| 29 | The population of a country. | No |  |
+| 30 | The population of a district. | No |  |
+| 31 | The population of a city. | No | |
 
 
 |      | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable | Average |

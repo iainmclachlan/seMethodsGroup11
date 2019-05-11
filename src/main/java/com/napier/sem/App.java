@@ -27,6 +27,7 @@ public class App
 
         a.getPopulationContinent();
 
+        /* took out these methods because Im unable to test it
         a.getRegionPopulation();
 
         a.getDistrictPopulation();
@@ -34,6 +35,7 @@ public class App
         a.getCountryPopulation();
 
         a.getContinentPopulationDESC();
+        */
 
         //Disconnect from MySQL
         a.disconnect();
@@ -415,16 +417,16 @@ shows city population from a specific ID
 
     /*
    shows population of a region
-    */
+
     public Country getRegionPopulation()
     {
         System.out.println("Get region population\n");
         try
         {
-            /* Create a SQL statement */
+            /* Create a SQL statement
             Statement stmt = con.createStatement();
 
-            /* Create string for SQL statement */
+            /* Create string for SQL statement
             String strSelect;
             strSelect = "SELECT SUM(Population),Region FROM country SORT BY Region";
             // Execute SQL statement
@@ -466,16 +468,16 @@ shows city population from a specific ID
 
     /*
    shows population of a district
-    */
+
     public City getDistrictPopulation()
     {
         System.out.println("Get district population\n");
         try
         {
-            /* Create a SQL statement */
+            /* Create a SQL statement
             Statement stmt = con.createStatement();
 
-            /* Create string for SQL statement */
+            /* Create string for SQL statement
             String strSelect;
             strSelect = "SELECT SUM(Population),District FROM city SORT BY District";
             // Execute SQL statement
@@ -518,16 +520,16 @@ shows city population from a specific ID
 
     /*
    shows population of a country
-    */
+
     public Country getCountryPopulation()
     {
         System.out.println("Get population of a country\n");
         try
         {
-            /* Create a SQL statement */
+            /* Create a SQL statement
             Statement stmt = con.createStatement();
 
-            /* Create string for SQL statement */
+            /* Create string for SQL statement
             String strSelect;
             strSelect = "SELECT SUM(Population),name FROM country SORT BY name";
             // Execute SQL statement
@@ -569,16 +571,16 @@ shows city population from a specific ID
 
     /*
   All the countries in a continent organised by largest population to smallest.
-   */
+
     public Country getContinentPopulationDESC()
     {
         System.out.println("All the countries in a continent organised by largest population to smallest.\n");
         try
         {
-            /* Create a SQL statement */
+            /* Create a SQL statement
             Statement stmt = con.createStatement();
 
-            /* Create string for SQL statement */
+            /* Create string for SQL statement
             String strSelect;
             strSelect = "SELECT Code, Name, Population, Continent FROM country GROUP BY Continent ORDER BY Population DESC";
             // Execute SQL statement
@@ -618,7 +620,7 @@ shows city population from a specific ID
             System.out.println("Failed to get all the countries in a continent organised by largest population to smallest.");
             return null;
         }
-    }
+    }*/
 
 }
 
